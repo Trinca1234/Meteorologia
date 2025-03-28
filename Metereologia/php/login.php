@@ -1,4 +1,5 @@
 <?php
+session_start();
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //verificação do metedo
     if (isset($_POST['username']) && isset($_POST['password'])){
@@ -24,10 +25,13 @@
                 if($_POST['username'] == $nome && (password_verify ($_POST['password'], $pass))){
                     //ir para dashboard
                     echo "entrou";
-                    header("Location: ../html/index.html");
+                    unset($_SESSION['error']); // Remove a mensagem após ser exibida
+                    header("Location: ../html/index.php");
                     exit;
                 }
             }
+            $_SESSION['erro'] = "Username ou Password inválidos";
+            header("Location: ../html/index.php");
         }
         else{
             http_response_code(404);
