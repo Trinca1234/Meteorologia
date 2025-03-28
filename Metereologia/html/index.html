@@ -8,14 +8,14 @@
 <body>
 <div class="login-box">
   <h2>Login</h2>
-  <form class="row g-3">
+  <form class="row g-3" action ="../php/login.php" method ="POST">
     <div class="rwo mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="text" class="form-control" id="usernameId" placeholder="Username">
+        <input type="text" class="form-control" id="usernameId" placeholder="Username" name="username">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-        <input type="text" class="form-control" id="passId">
+        <input type="text" class="form-control" id="passId" name="password">
       </div>
       <button>Login</button>
   </form>
