@@ -13,21 +13,23 @@
       <form class="row g-3" action ="../php/login.php" method ="POST">
           <div class="rwo mb-3">
             <label class="form-label">Nome de Utilizador</label>
-            <input type="text" class="form-control" id="usernameId" placeholder="Username" name="username">
+            <input type="text" class="form-control" placeholder="Username" name="username">
           </div>
           <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" id="passId" name="password" placeholder="Palavra-pass">
+            <label class="form-label">Palavra-passe</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
           <?php 
+                //vai crair sessao e ver se a variavel erro existe
                 session_start();
                 if (isset($_SESSION['erro'])) {
+                    //se existir vai escrever a mensagem
                     echo '<small class="form-text text-danger">' . $_SESSION['erro'] . '</small>';
                     unset($_SESSION['erro']); 
                 }
             ?>
           <button name ="submit" type="submit" class="btn btn-primary ">Login</button>
-    </form>
+        </form>
       </div>
     </div>
 </body>

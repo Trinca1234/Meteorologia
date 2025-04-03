@@ -24,9 +24,10 @@ session_start();
                 //se o nome e a pass do ficheiro forem iguais ao que foi enviado no POST vai para o dashboard
                 if($_POST['username'] == $nome && (password_verify ($_POST['password'], $pass))){
                     //ir para dashboard
-                    echo "entrou";
-                    unset($_SESSION['error']); // Remove a mensagem após ser exibida
-                    header("Location: ../html/index.php");
+
+
+                    unset($_SESSION['error']); 
+                    header("Location: ../html/dashboard.html");
                     exit;
                 }
             }
@@ -34,14 +35,21 @@ session_start();
             header("Location: ../html/index.php");
         }
         else{
-            http_response_code(404);
+            ErrorHandling("Erro 404: Ficheiro não encontrado.",404);
         }
     }
     else{
-        http_response_code(400);
+        ErrorHandling("Erro 400: Pedido Inválido.",400);
     }
  }
  else{
-    http_response_code(405);
+    ErrorHandling("Erro 405: Métedo não permitido.",405);
+ }
+ function ErrorHandling($msg,$erro){
+    $index = "../html/index.php";
+
+    http_response_code($erro);
+    header("Refresh:3; url=".$index);
+    die($msg);
  }
 ?>
