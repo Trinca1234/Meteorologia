@@ -32,7 +32,8 @@
     $url = $url . "variavel=temperatura&info=hora";
 
     
-    //echo file_get_contents($url);
+    //echo file_get_contents($url); para conseguir ir buscar dados
+      
     ?>
     <header class="bg-white border-bottom sticky-header">
         <div class="container py-3">
