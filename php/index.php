@@ -10,7 +10,7 @@
     <div class ="container">
       <div class="login-box row justify-content-center">
       <h2><strong>Login</strong></h2>
-      <form class="row g-3" action ="../php/login.php" method ="POST">
+      <form class="row g-3" action ="../funcoes/login.php" method ="POST">
           <div class="rwo mb-3">
             <label class="form-label">Nome de Utilizador</label>
             <input type="text" class="form-control" placeholder="Username" name="username">
@@ -20,7 +20,7 @@
             <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
           <?php 
-                //vai crair sessao e ver se a variavel erro existe
+                //vai criar sessao e ver se a variavel erro existe
                 session_start();
                 if (isset($_SESSION['erro'])) {
                     //se existir vai escrever a mensagem
@@ -28,7 +28,7 @@
                     unset($_SESSION['erro']); 
                 }
             ?>
-          <button name ="submit" type="submit" class="btn btn-primary "> Login</button>
+          <button name ="submit" type="submit" class="btn btn-primary ">Login</button>
         </form>
       </div>
     </div>
