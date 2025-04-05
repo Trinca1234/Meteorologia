@@ -115,13 +115,25 @@
                   //se for o primeiro fica com esta class
                   $ativo = $primeiro ? 'show active' : '';
 
+
+                  //vai verificar se existem dados para o sensor 
+                  //se nao existir nao faz tabelas e escreve que nao existem dados
+                  $encontrado = false;
+                  foreach ($dados as $log) {
+                    if (ucfirst($log['nome']) === $sensor) {
+                        $encontrado = true; 
+                        break; 
+                    }
+                }
+
                   //vai fazer criar a tabela com o nome do sensor e com os respetivos id's
                   //para depois conseguir fazer 'paginas' com cada sensor
                   echo '                
-                      <div class="tab-pane fade ' . $ativo . '" id="' . $sensor . '" role="tabpanel" aria-labelledby="' . $sensor . '">
-                          <table class="table table-striped table-hover table-bordered shadow-sm">
+                      <div class="tab-pane fade ' . $ativo . '" id="' . $sensor . '" role="tabpanel" aria-labelledby="' . $sensor . '">';
+                  if ($encontrado || $primeiro) {
+                    echo '  <table class="table table-striped table-hover table-bordered shadow-sm">
                               <thead class="table-dark">
-                                  <tr>
+                                      <tr>
                                       <th>#</th>
                                       <th>' . ucfirst($sensor) . '</th>
                                       <th>Valor</th>
@@ -129,10 +141,14 @@
                                   </tr>
                               </thead>
                           <tbody>';
-
+                  }
+                  else
+                    echo "Não existem dados sobre este sensor.";
+                  
                   //fazer o conteudo das tabelas
                   if ($primeiro) {
                     foreach ($dados as $index => $log) {
+
                       echo '<tr>
                       <td>' . ($index + 1) . '</td>
                       <td>' . ucfirst($log['nome']) . '</td>
@@ -149,7 +165,6 @@
                         <td>' . $log['valor'] . $log['escala'] . '</td>
                         <td>' . $log['hora'] . '</td>
                         </tr>';
-
                       }
                     }
                   }
@@ -182,4 +197,5 @@
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
