@@ -41,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //vai escrever nos logs de maneira bonita e legivel
             file_put_contents($fichieroLogs, json_encode($logsArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         }
-    } else {
+    }
+     else {
         echo "\nparametros invalidos";
     }
 } else if ($_SERVER['REQUEST_METHOD'] == "GET") {

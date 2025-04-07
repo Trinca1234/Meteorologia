@@ -16,7 +16,7 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header("refresh:5;url=../funcoes/login.php");
+        header("refresh:5;url=../dados/api/login.php");
         die("Login Necessário");
     }
 
@@ -34,7 +34,7 @@
     /* echo file_get_contents($); //para conseguir ir buscar dados */
 
     ?>
-    <header class="bg-white border-bottom sticky-header">
+     <header class="bg-white border-bottom sticky-header">
         <div class="container py-3">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-2 mb-md-0">
@@ -42,7 +42,7 @@
                     <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="historico.php">Historico</a></span></h1>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
+                    <form class="d-flex justify-content-end" action="../dados/api/logout.php" method="POST">
                         <button type="submit" class="btn btn-danger">
                             <img src="logout-icon.png" alt="Logout" width="20" height="20">
                         </button>
@@ -112,35 +112,11 @@
                             </div>
                         </div>
                     </div>
-
-                    
-                    <div class="card p-6">
-                        <div class="card-header widjet">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h2 class="h5 mb-0">Leiria</h2>
-                                    <p class="text-muted small mb-0">quinta</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body wijetbody">
-                            <p class="fs-5 mb-4">Descricao</p>
-                            <div class="row g-3">
-                                <div class="col-6">
-                                    <div class="border border-dark rounded p-3 text-center itembonita">
-                                        <div class="text-muted small mb-1">Ceu</div>
-                                        <div class="fw-bold">Ta fixe</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
     </main>
-    <footer class=" bg-white border-top py-4 mt-4 colorbonita">
+    <footer class=" bg-white border-top py-1 mt-4">
         <div class="container">
             <div class="row align-items-center text-center text-md-start">
                 <div class="col-md-9 mb-3 mb-md-0">
@@ -156,7 +132,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

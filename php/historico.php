@@ -34,15 +34,15 @@
 
   //echo file_get_contents($url);
   ?>
-    <header class="bg-white border-bottom sticky-header">
+     <header class="bg-white border-bottom sticky-header">
         <div class="container py-3">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-2 mb-md-0">
                     
-                    <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="dashboard.php">Dashboard</a></span></h1>
+                    <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="historico.php">Historico</a></span></h1>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
+                    <form class="d-flex justify-content-end" action="../dados/api/logout.php" method="POST">
                         <button type="submit" class="btn btn-danger">
                             <img src="logout-icon.png" alt="Logout" width="20" height="20">
                         </button>
@@ -184,7 +184,7 @@
     </div>
   </main>
 
-  <footer class="bg-white border-top py-4 mt-4 colorbonita">
+  <footer class=" bg-white border-top py-1 mt-4">
         <div class="container">
             <div class="row align-items-center text-center text-md-start">
                 <div class="col-md-9 mb-3 mb-md-0">

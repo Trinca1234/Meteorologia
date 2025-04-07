@@ -10,7 +10,7 @@
     <div class ="container">
       <div class="login-box row justify-content-center">
       <h2><strong>Login</strong></h2>
-      <form class="row g-3" action ="../funcoes/login.php" method ="POST">
+      <form class="row g-3" action ="../dados/api/login.php" method ="POST">
           <div class="rwo mb-3">
             <label class="form-label">Nome de Utilizador</label>
             <input type="text" class="form-control" placeholder="Username" name="username">
