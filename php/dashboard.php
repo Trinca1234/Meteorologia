@@ -112,35 +112,11 @@
                             </div>
                         </div>
                     </div>
-
-                    
-                    <div class="card p-6">
-                        <div class="card-header widjet">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h2 class="h5 mb-0">Leiria</h2>
-                                    <p class="text-muted small mb-0">quinta</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body wijetbody">
-                            <p class="fs-5 mb-4">Descricao</p>
-                            <div class="row g-3">
-                                <div class="col-6">
-                                    <div class="border border-dark rounded p-3 text-center itembonita">
-                                        <div class="text-muted small mb-1">Ceu</div>
-                                        <div class="fw-bold">Ta fixe</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
     </main>
-    <footer class=" bg-white border-top py-4 mt-4 colorbonita">
+    <footer class=" bg-white border-top py-1 mt-4">
         <div class="container">
             <div class="row align-items-center text-center text-md-start">
                 <div class="col-md-9 mb-3 mb-md-0">
