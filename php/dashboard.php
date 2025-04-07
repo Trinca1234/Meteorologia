@@ -16,7 +16,7 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header("refresh:5;url=../funcoes/login.php");
+        header("refresh:5;url=../dados/api/login.php");
         die("Login Necessário");
     }
 
@@ -34,7 +34,7 @@
     /* echo file_get_contents($); //para conseguir ir buscar dados */
 
     ?>
-    <header class="bg-white border-bottom sticky-header">
+     <header class="bg-white border-bottom sticky-header">
         <div class="container py-3">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-2 mb-md-0">
@@ -42,7 +42,7 @@
                     <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="historico.php">Historico</a></span></h1>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
+                    <form class="d-flex justify-content-end" action="../dados/api/logout.php" method="POST">
                         <button type="submit" class="btn btn-danger">
                             <img src="logout-icon.png" alt="Logout" width="20" height="20">
                         </button>
@@ -132,7 +132,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
