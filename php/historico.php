@@ -15,42 +15,28 @@
   <?php
   session_start();
 
-  if (!isset($_SESSION['username'])) {
-    header("refresh:5;url=../funcoes/login.php");
-    die("caganita");
+  if (!isset($_SESSION['username'],$_SESSION['admin'])) {
+    $_SESSION['erro'] = "É necessário login para entrar";
+    header('Location: index.php');
+    exit();
   }
-
-  //verificar qual o protocolo (https ou http)
-  $protocolo = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-
-  //vai ver o Host do servidor  
-  $host = $_SERVER['HTTP_HOST'];
-
-  //com as duas informações contrui um url para conseguir o pedido de dados
-  $url = $protocolo . "://" . $host . "/Meteorologia-Richardo/Meteorologia-Richardo/Meteorologia-main/Meteorologia-main/dados/api/api.php?";
-
-  $url = $url . "variavel=temperatura&info=hora";
-
-
-  //echo file_get_contents($url);
   ?>
-     <header class="bg-white border-bottom sticky-header">
-        <div class="container py-3">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-2 mb-md-0">
-                    
-                    <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="historico.php">Historico</a></span></h1>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <form class="d-flex justify-content-end" action="../dados/api/logout.php" method="POST">
-                        <button type="submit" class="btn btn-danger">
-                            <img src="logout-icon.png" alt="Logout" width="20" height="20">
-                        </button>
-                    </form>
-                </div>
-            </div>
+  <header class="bg-white border-bottom sticky-header">
+    <div class="container py-3">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-2 mb-md-0">
+          <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto_noBG.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href="dashboard.php">Dashboard</a></span></h1>
         </div>
-    </header>
+        <div class="col-md-6 text-md-end">
+          <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
+            <button type="submit" class="btn btn-danger">
+              <img src="logout-icon.png" alt="Logout" width="20" height="20">
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
   <main class="main-content py-4">
     <div class="container">
       <div class="row g-4">
@@ -91,7 +77,7 @@
                           <button class="nav-link ' . $ativo . '" id="' . $sensor . '-tab" data-bs-toggle="tab" 
                           data-bs-target="#' . $sensor . '" type="button" role="tab" 
                           aria-controls="' . $sensor . '" aria-selected="' . $primeiro . '">' . $sensor . '</button>
-                        </li>'; 
+                        </li>';
 
                   //depois de fazer o primeiro passa a falso para nao fazer a classe active
                   $primeiro = false;
@@ -122,10 +108,10 @@
                   $encontrado = false;
                   foreach ($dados as $log) {
                     if (ucfirst($log['nome']) === $sensor) {
-                        $encontrado = true; 
-                        break; 
+                      $encontrado = true;
+                      break;
                     }
-                }
+                  }
 
                   //vai fazer criar a tabela com o nome do sensor e com os respetivos id's
                   //para depois conseguir fazer 'paginas' com cada sensor
@@ -142,10 +128,9 @@
                                   </tr>
                               </thead>
                           <tbody>';
-                  }
-                  else
+                  } else
                     echo "Não existem dados sobre este sensor.";
-                  
+
                   //fazer o conteudo das tabelas
                   if ($primeiro) {
                     foreach ($dados as $index => $log) {
@@ -185,21 +170,21 @@
   </main>
 
   <footer class=" bg-white border-top py-1 mt-4">
-        <div class="container">
-            <div class="row align-items-center text-center text-md-start">
-                <div class="col-md-9 mb-3 mb-md-0">
-                    <h5 class="mb-2">Feito por:</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>Ricardo Duarte - <span class="text-muted">2240879</span></li>
-                        <li>João Soares - <span class="text-muted">2240859</span></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 text-md-end">
-                    <img src="../dados/imagens/logo_ipl.png" alt="Logotipo" class="img-fluid" style="max-height: 100px;">
-                </div>
-            </div>
+    <div class="container">
+      <div class="row align-items-center text-center text-md-start">
+        <div class="col-md-9 mb-3 mb-md-0">
+          <h5 class="mb-2">Feito por:</h5>
+          <ul class="list-unstyled mb-0">
+            <li>Ricardo Duarte - <span class="text-muted">2240879</span></li>
+            <li>João Soares - <span class="text-muted">2240859</span></li>
+          </ul>
         </div>
-    </footer>
+        <div class="col-md-3 text-md-end">
+          <img src="../dados/imagens/logo_ipl.png" alt="Logotipo" class="img-fluid" style="max-height: 100px;">
+        </div>
+      </div>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
