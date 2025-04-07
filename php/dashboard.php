@@ -155,6 +155,92 @@
                     </div>
                 </div>
             </div>
+            <div class="row g-4 mt-4">
+                <div class="col-12">
+                    <div class="card border border-dark">
+                        <div class="card-header widjet">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="h5 mb-0">Atuadores</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body wijetbody">
+                            <div class="row g-3">
+                                <div class="col-6 col-sm-4">
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                            <strong>
+                                                Ar condicionado
+                                            </strong>
+                                            <?php
+                                            //se a temperatura for menor que 20 liga o ar condicionado
+                                                echo '
+                                                <p class="text-muted small mb-0">
+                                                    ' . (file_get_contents($url . "variavel=temperatura&info=valor") > 20 ? 'Ligado' : 'Desligado') . '
+                                                </p>
+                                                ';
+                                            ?>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <img style="max-height: 160px;" src="../dados/imagens/AC.png" alt="Ar condicionado" />
+                                        </div>
+                                        <div class="card-footer footer text-center">
+                                            <strong>Atualização:</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                            <strong>
+                                                Led
+                                            </strong>
+                                            <?php
+                                            //se luminosidade for menor que 50% a led liga
+                                                echo '
+                                                <p class="text-muted small mb-0">
+                                                    ' . (file_get_contents($url . "variavel=luminosidade&info=valor") < 50 ? 'Ligado' : 'Desligado') . '
+                                                </p>
+                                                ';
+                                            ?>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <img style="max-height: 160px;" src="../dados/imagens/led.png" alt="Ar condicionado" />
+                                        </div>
+                                        <div class="card-footer footer text-center">
+                                            <strong>Atualização:</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                            <strong>
+                                                Regador
+                                            </strong>
+                                            <?php
+                                            //se temperatura for maior que 20 e humidade menor que 50%
+                                                echo '
+                                                <p class="text-muted small mb-0">
+                                                    ' . (file_get_contents($url . "variavel=temperatura&info=valor") > 20 | file_get_contents($url . "variavel=luminosidade&info=valor") < 50 ? 'Ligado' : 'Desligado') . '
+                                                </p>
+                                                ';
+                                            ?>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <img style="max-height: 160px;" src="../dados/imagens/regador.png" alt="Ar condicionado" />
+                                        </div>
+                                        <div class="card-footer footer text-center">
+                                            <strong>Atualização:</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer class=" bg-white border-top py-1 mt-4">
