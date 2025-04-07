@@ -34,22 +34,23 @@
 
   //echo file_get_contents($url);
   ?>
-  <header class="bg-white border-bottom sticky-header">
-    <div class="container py-3">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-2 mb-md-0">
-          <h1 class="h4 mb-0">Tempo Certo</h1>
+    <header class="bg-white border-bottom sticky-header">
+        <div class="container py-3">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-2 mb-md-0">
+                    
+                    <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="dashboard.php">Dashboard</a></span></h1>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
+                        <button type="submit" class="btn btn-danger">
+                            <img src="logout-icon.png" alt="Logout" width="20" height="20">
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 text-md-end">
-          <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
-            <button type="submit" class="btn btn-danger">
-              <img src="logout-icon.png" alt="Logout" width="20" height="20">
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
   <main class="main-content py-4">
     <div class="container">
       <div class="row g-4">
@@ -90,7 +91,7 @@
                           <button class="nav-link ' . $ativo . '" id="' . $sensor . '-tab" data-bs-toggle="tab" 
                           data-bs-target="#' . $sensor . '" type="button" role="tab" 
                           aria-controls="' . $sensor . '" aria-selected="' . $primeiro . '">' . $sensor . '</button>
-                        </li>';
+                        </li>'; 
 
                   //depois de fazer o primeiro passa a falso para nao fazer a classe active
                   $primeiro = false;
@@ -183,18 +184,22 @@
     </div>
   </main>
 
-  <footer class="border-top py-3 mt-4 colorbonita">
-    <div class="container">
-      <div class="row text-center text-md-start">
-        <div class="col-md-6 mb-2 mb-md-0">
-          <p>Feito por Trinca e um bocadinho de IA</p>
+  <footer class="bg-white border-top py-4 mt-4 colorbonita">
+        <div class="container">
+            <div class="row align-items-center text-center text-md-start">
+                <div class="col-md-9 mb-3 mb-md-0">
+                    <h5 class="mb-2">Feito por:</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li>Ricardo Duarte - <span class="text-muted">2240879</span></li>
+                        <li>João Soares - <span class="text-muted">2240859</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <img src="../dados/imagens/logo_ipl.png" alt="Logotipo" class="img-fluid" style="max-height: 100px;">
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 text-md-end">
-          <p>bleh</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -79,3 +79,9 @@ body {
   top: 0;
   z-index: 1020;
 }
+
+a
+{
+color:#999999;
+text-decoration: none;
+}
