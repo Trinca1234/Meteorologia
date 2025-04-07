@@ -6,11 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css"> 
 </head>
-<body>
+<body class="imagemfundo">
     <div class ="container">
       <div class="login-box row justify-content-center">
       <h2><strong>Login</strong></h2>
-      <form class="row g-3" action ="../dados/api/login.php" method ="POST">
+      <form class="row g-3" action ="../funcoes/login.php" method ="POST">
           <div class="rwo mb-3">
             <label class="form-label">Nome de Utilizador</label>
             <input type="text" class="form-control" placeholder="Username" name="username">

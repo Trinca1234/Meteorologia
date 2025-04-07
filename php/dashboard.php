@@ -16,8 +16,10 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header("refresh:5;url=../dados/api/login.php");
-        die("Login Necessário");
+        $_SESSION['erro'] = "É necessário login para entrar.";
+        header('Location: index.php');
+        exit();
+
     }
 
     //verificar qual o protocolo (https ou http)
@@ -29,24 +31,27 @@
     //com as duas informações contrui um url para conseguir o pedido de dados
     $url = $protocolo . "://" . $host . "/Meteorologia/dados/api/api.php?";
 
-    $url = $url . "variavel=temperatura&info=hora";
-
-    /* echo file_get_contents($); //para conseguir ir buscar dados */
-
     ?>
-     <header class="bg-white border-bottom sticky-header">
+    <header class="bg-white border-bottom sticky-header">
         <div class="container py-3">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-2 mb-md-0">
-                    
-                    <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto.png" alt="Logotipo" style="max-height: 60px;"><span class="text-muted p-5 h5"> <a href ="historico.php">Historico</a></span></h1>
+                    <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto_noBG.png" alt="Logotipo" style="max-height: 60px;">
+                        <span class="text-muted p-5 h5">
+                            <?php
+                            if (isset($_SESSION['admin'])) {
+                                echo ' <a href="historico.php">Historico</a></span>';
+                            }
+                            ?>
+                    </h1>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <form class="d-flex justify-content-end" action="../dados/api/logout.php" method="POST">
+                    <form class="d-flex justify-content-end" action="../funcoes/logout.php" method="POST">
                         <button type="submit" class="btn btn-danger">
                             <img src="logout-icon.png" alt="Logout" width="20" height="20">
                         </button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -60,52 +65,88 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h2 class="h5 mb-0">Leiria</h2>
-                                    <p class="text-muted small mb-0">quinta</p>
+                                    <p class="text-muted small mb-0">
+                                        <?php
+                                        $diaDaSemana = [
+                                            'Monday' => 'Segunda-feira',
+                                            'Tuesday' => 'Terça-feira',
+                                            'Wednesday' => 'Quarta-feira',
+                                            'Thursday' => 'Quinta-feira',
+                                            'Friday' => 'Sexta-feira',
+                                            'Saturday' => 'Sábado',
+                                            'Sunday' => 'Domingo'
+                                        ];
+
+                                        $dataAtual = date("l");
+                                        echo $diaDaSemana[$dataAtual];
+
+                                        ?></p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body wijetbody">
-                            <p class="fs-5 mb-4">Descricao</p>
+                            <p class="fs-5 mb-4">Descrição</p>
                             <div class="row g-3">
-                                <div class="col-6 col-sm-4 ">
-                                    <div class="card border border-dark">
-                                        <div class="card-header sensor header">
-                                            <strong>Temperatura: 45ºC</strong>
-                                        </div>
-                                        <div class="card-body">
-                                            <img style="max-height: 160px;" src="https://media.istockphoto.com/id/1411855775/pt/vetorial/set-of-icons-with-different-fire.jpg?s=612x612&w=0&k=20&c=x5or03YcnwaJbgXWeXyqj8ZtLCn6re4Ls04SOREykxA=" alt="Temperatura"/>
-                                        </div>
-                                        <div class="card-footer footer">
-                                            <strong>Atualização:</strong>
-                                            2024/03/10 14:31 - 
+                                <div class="col-6 col-sm-4">
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                            <?php
+                                            $imagem  = file_get_contents($url . "variavel=temperatura&info=valor") < 20 ? '../dados/imagens/temperaturaBaixa.png' : '../dados/imagens/temperaturaAlta.png';
+                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=temperatura&info=nome")) . ": "
+                                                . file_get_contents($url . "variavel=temperatura&info=valor") .
+                                                file_get_contents($url . "variavel=temperatura&info=escala") .
+                                                '</strong>' . '                                        </div>
+                                                <div class="card-body text-center">
+
+                                                
+                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Temperatura" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=temperatura&info=hora"));
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-4">
-                                    <div class="card border border-dark">
-                                        <div class="card-header sensor header">
-                                            <strong>Humidade: 40%</strong>
-                                        </div>
-                                        <div class="card-body">
-                                            <img style="max-height: 160px;" src="https://i.kym-cdn.com/entries/icons/facebook/000/036/007/underthewatercover.jpg" alt="Humidade"/>
-                                        </div>
-                                        <div class="card-footer footer">
-                                            <strong>Atualização:</strong>
-                                            2024/03/10 14:31 - 
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                            <?php
+                                            $imagem  = file_get_contents($url . "variavel=humidade&info=valor") < 50 ? '../dados/imagens/humidadeBaixa.png' : '../dados/imagens/humidadeAlta.png';
+                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=humidade&info=nome")) . ": "
+                                                . file_get_contents($url . "variavel=humidade&info=valor") .
+                                                file_get_contents($url . "variavel=humidade&info=escala") .
+                                                '</strong>' . '                                        </div>
+                                                <div class="card-body text-center">
+
+                                                
+                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Humidade" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=humidade&info=hora"));
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-4">
-                                    <div class="card border border-dark">
-                                        <div class="card-header sensor header">
-                                            <strong>Luminosidade: Fixe</strong>
-                                        </div>
-                                        <div class="card-body">
-                                            <img style="max-height: 150px;" src="https://preview.redd.it/sun-care-i-cant-find-a-sunscreen-that-doesnt-burn-my-eyes-v0-dk8h2cfj4zfb1.jpg?auto=webp&s=6fb939b54f5975429ec99ab6168b7f5e5bc6fd95" alt="Luminosidade"/>
-                                        </div>
-                                        <div class="card-footer footer">
-                                            <strong>Atualização:</strong>
-                                            2024/03/10 14:31 - 
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                            <?php
+                                            $imagem  = file_get_contents($url . "variavel=luminosidade&info=valor") < 50 ? '../dados/imagens/luminosidadeBaixa.png' : '../dados/imagens/luminosidadeAlta.png';
+                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=luminosidade&info=nome")) . ": "
+                                                . file_get_contents($url . "variavel=luminosidade&info=valor") .
+                                                file_get_contents($url . "variavel=luminosidade&info=escala") .
+                                                '</strong>' . '                                        </div>
+                                                <div class="card-body text-center">
+
+                                                
+                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Luminosidade" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=luminosidade&info=hora"));
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
