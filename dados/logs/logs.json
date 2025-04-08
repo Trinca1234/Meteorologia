@@ -85,10 +85,9 @@
             "escala": "ºC"
         },
         {
-            "nome": "temperatura",
-            "valor": "10",
-            "hora": "2025/04/07 16:42",
-            "escala": "ºC"
-        }
+            "nome": "arCondicionado",
+            "valor": "Ligado",
+            "hora": "2025/04/07 16:42"
+        }   
     ]
 }
