@@ -91,8 +91,9 @@
                 //vou buscar os dados do ficheiro json
                 $logs = file_get_contents("../dados/logs/logs.json");
 
-                //passar tudo o que esta dentro dos logs para um array 
-                $dados = json_decode($logs, true)['logs'];
+                //passar tudo o que esta dentro dos logs para um array e mostrar primeiro os mais recentes
+                $dados = array_reverse(json_decode($logs, true)['logs']);
+                
 
                 //verificar se é a primeira aba
                 $primeiro = true;
