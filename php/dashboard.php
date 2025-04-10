@@ -19,7 +19,6 @@
         $_SESSION['erro'] = "É necessário login para entrar.";
         header('Location: index.php');
         exit();
-
     }
 
     //verificar qual o protocolo (https ou http)
@@ -29,7 +28,7 @@
     $host = $_SERVER['HTTP_HOST'];
 
     //com as duas informações contrui um url para conseguir o pedido de dados
-    $url = $protocolo . "://" . $host . "/Meteorologia/dados/api/api.php?";
+    $url = $protocolo . "://" . $host . "/ti/ti113/dados/api/api.php?";
 
     ?>
     <header class="bg-white border-bottom sticky-header">
@@ -39,6 +38,7 @@
                     <h1 class="h3 mb-0"><img src="../dados/imagens/TempoCerto_noBG.png" alt="Logotipo" style="max-height: 60px;">
                         <span class="text-muted p-5 h5">
                             <?php
+                            //verifica se a variavel admin existe para poder disponibilizar o historico
                             if (isset($_SESSION['admin'])) {
                                 echo ' <a href="historico.php">Historico</a></span>';
                             }
@@ -67,6 +67,8 @@
                                     <h2 class="h5 mb-0">Leiria</h2>
                                     <p class="text-muted small mb-0">
                                         <?php
+
+                                        //array associativo para poder passar os nomes em ingles devolvidos da função para portugues
                                         $diaDaSemana = [
                                             'Monday' => 'Segunda-feira',
                                             'Tuesday' => 'Terça-feira',
@@ -86,6 +88,7 @@
                         </div>
                         <div class="card-body wijetbody">
                             <p class="fs-5 mb-4">Descrição</p>
+                            <!-- cartoes com as informaçoes dos sensores -->
                             <div class="row g-3">
                                 <div class="col-6 col-sm-4">
                                     <div class="card border border-dark ">
@@ -95,10 +98,8 @@
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=temperatura&info=nome")) . ": "
                                                 . file_get_contents($url . "variavel=temperatura&info=valor") .
                                                 file_get_contents($url . "variavel=temperatura&info=escala") .
-                                                '</strong>' . '                                        </div>
+                                                '</strong>' . ' </div>
                                                 <div class="card-body text-center">
-
-                                                
                                                 <img style="max-height: 160px;" src="' . $imagem . '" alt="Temperatura" />
                                                 </div>
                                                 <div class="card-footer footer text-center">
@@ -116,10 +117,8 @@
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=humidade&info=nome")) . ": "
                                                 . file_get_contents($url . "variavel=humidade&info=valor") .
                                                 file_get_contents($url . "variavel=humidade&info=escala") .
-                                                '</strong>' . '                                        </div>
+                                                '</strong>' . ' </div>
                                                 <div class="card-body text-center">
-
-                                                
                                                 <img style="max-height: 160px;" src="' . $imagem . '" alt="Humidade" />
                                                 </div>
                                                 <div class="card-footer footer text-center">
@@ -137,10 +136,8 @@
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=luminosidade&info=nome")) . ": "
                                                 . file_get_contents($url . "variavel=luminosidade&info=valor") .
                                                 file_get_contents($url . "variavel=luminosidade&info=escala") .
-                                                '</strong>' . '                                        </div>
+                                                '</strong>' . ' </div>
                                                 <div class="card-body text-center">
-
-                                                
                                                 <img style="max-height: 160px;" src="' . $imagem . '" alt="Luminosidade" />
                                                 </div>
                                                 <div class="card-footer footer text-center">
@@ -165,74 +162,63 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- cartao com as informaçoes dos atuadores -->
                         <div class="card-body wijetbody">
                             <div class="row g-3">
                                 <div class="col-6 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
-                                            <strong>
-                                                Ar condicionado
-                                            </strong>
                                             <?php
-                                            //se a temperatura for menor que 20 liga o ar condicionado
-                                                echo '
-                                                <p class="text-muted small mb-0">
-                                                    ' . (file_get_contents($url . "variavel=temperatura&info=valor") > 20 ? 'Ligado' : 'Desligado') . '
+                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=arCondicionado&info=nome")) .
+                                                '</strong>' . ' 
+                                                <p class="text-muted small mb-0">' . ucfirst(file_get_contents($url . "variavel=arCondicionado&info=valor")) . '
                                                 </p>
-                                                ';
+                                                </div>
+                                                <div class="card-body text-center">
+                                                <img style="max-height: 160px;" src="../dados/imagens/AC.png" alt="Ar Condicionado" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=led&info=hora"));
                                             ?>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <img style="max-height: 160px;" src="../dados/imagens/AC.png" alt="Ar condicionado" />
-                                        </div>
-                                        <div class="card-footer footer text-center">
-                                            <strong>Atualização:</strong>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
-                                            <strong>
-                                                Led
-                                            </strong>
                                             <?php
-                                            //se luminosidade for menor que 50% a led liga
-                                                echo '
-                                                <p class="text-muted small mb-0">
-                                                    ' . (file_get_contents($url . "variavel=luminosidade&info=valor") < 50 ? 'Ligado' : 'Desligado') . '
-                                                </p>
-                                                ';
+                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=led&info=nome")) .
+                                                '</strong>' . ' 
+                                                <p class="text-muted small mb-0">' . ucfirst(file_get_contents($url . "variavel=led&info=valor")) . '
+                                                </p>                                          
+                                                </div>
+                                                <div class="card-body text-center">
+                                                <img style="max-height: 160px;" src="../dados/imagens/led.png" alt="Led" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=led&info=hora"));
                                             ?>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <img style="max-height: 160px;" src="../dados/imagens/led.png" alt="Ar condicionado" />
-                                        </div>
-                                        <div class="card-footer footer text-center">
-                                            <strong>Atualização:</strong>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
-                                            <strong>
-                                                Regador
-                                            </strong>
                                             <?php
-                                            //se temperatura for maior que 20 e humidade menor que 50%
-                                                echo '
-                                                <p class="text-muted small mb-0">
-                                                    ' . (file_get_contents($url . "variavel=temperatura&info=valor") > 20 | file_get_contents($url . "variavel=luminosidade&info=valor") < 50 ? 'Ligado' : 'Desligado') . '
+                                            echo'<strong>' . ucfirst(file_get_contents($url . "variavel=regador&info=nome")) .
+                                                '</strong>' . ' 
+                                                <p class="text-muted small mb-0">' . ucfirst(file_get_contents($url . "variavel=regador&info=valor")) . '
                                                 </p>
-                                                ';
+                                                </div>
+                                                <div class="card-body text-center">
+                                                <img style="max-height: 160px;" src="../dados/imagens/regador.png" alt="Regador" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=regador&info=hora"));
                                             ?>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <img style="max-height: 160px;" src="../dados/imagens/regador.png" alt="Ar condicionado" />
-                                        </div>
-                                        <div class="card-footer footer text-center">
-                                            <strong>Atualização:</strong>
                                         </div>
                                     </div>
                                 </div>

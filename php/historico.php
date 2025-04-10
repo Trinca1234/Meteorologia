@@ -7,6 +7,7 @@
   <title>Tempo Certo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../dados/imagens/icon.png">
 
 
 </head>
@@ -14,8 +15,8 @@
 <body>
   <?php
   session_start();
-
-  if (!isset($_SESSION['username'],$_SESSION['admin'])) {
+  //verifico se existe sessao
+  if (!isset($_SESSION['username'], $_SESSION['admin'])) {
     $_SESSION['erro'] = "É necessário login para entrar";
     header('Location: index.php');
     exit();
@@ -51,7 +52,8 @@
 
                 $caminho = "../dados/api/files";
                 $pastas[] = "Todos";
-                //vai passar por todas as pastas dos sensores e vai buscar os nomes para fazer cada uma das suas abas automaticamente;
+
+                //vai passar por todas as pastas e vai buscar os nomes para fazer cada uma das suas abas automaticamente;
                 foreach (scandir($caminho) as $item) {
 
                   //verifica se o nome da pasta + caminho é um diretorio 
@@ -91,9 +93,12 @@
                 //vou buscar os dados do ficheiro json
                 $logs = file_get_contents("../dados/logs/logs.json");
 
-                //passar tudo o que esta dentro dos logs para um array 
-                $dados = json_decode($logs, true)['logs'];
+                //passar tudo o que esta dentro dos logs para um array e mostrar primeiro os mais recentes
+                $dados = array_reverse(json_decode($logs, true)['logs']);
 
+                $temDados = count($dados) > 0;
+
+                
                 //verificar se é a primeira aba
                 $primeiro = true;
 
@@ -117,7 +122,7 @@
                   //para depois conseguir fazer 'paginas' com cada sensor
                   echo '                
                       <div class="tab-pane fade ' . $ativo . '" id="' . $sensor . '" role="tabpanel" aria-labelledby="' . $sensor . '">';
-                  if ($encontrado || $primeiro) {
+                  if (($encontrado || $primeiro) && $temDados) {
                     echo '  <table class="table table-striped table-hover table-bordered shadow-sm">
                               <thead class="table-dark">
                                       <tr>
@@ -128,8 +133,13 @@
                                   </tr>
                               </thead>
                           <tbody>';
-                  } else
-                    echo "Não existem dados sobre este sensor.";
+                  } else {
+                    if ($primeiro) {
+                      echo "Não existem dados nenhuns.";
+                    }else{
+                      echo "Não existem dados sobre este sensor.";
+                    }
+                  }
 
                   //fazer o conteudo das tabelas
                   if ($primeiro) {
