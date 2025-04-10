@@ -1,0 +1,116 @@
+{
+    "logs": [
+        {
+            "nome": "temperatura",
+            "valor": "15",
+            "hora": "2025/04/10 18:33",
+            "escala": "ºC"
+        },
+        {
+            "nome": "arCondicionado",
+            "valor": "Desligado",
+            "hora": "2025/04/10 18:33"
+        },
+        {
+            "nome": "regador",
+            "valor": "Desligado",
+            "hora": "2025/04/10 18:33"
+        },
+        {
+            "nome": "humidade",
+            "valor": "40",
+            "hora": "2025/04/10 18:35",
+            "escala": "%"
+        },
+        {
+            "nome": "regador",
+            "valor": "Ligado",
+            "hora": "2025/04/10 18:35"
+        },
+        {
+            "nome": "luminosidade",
+            "valor": "70",
+            "hora": "2025/04/10 18:36",
+            "escala": "%"
+        },
+        {
+            "nome": "led",
+            "valor": "Desligado",
+            "hora": "2025/04/10 18:36"
+        },
+        {
+            "nome": "humidade",
+            "valor": "10",
+            "hora": "2025/04/10 18:37",
+            "escala": "%"
+        },
+        {
+            "nome": "humidade",
+            "valor": "25",
+            "hora": "2025/04/10 18:38",
+            "escala": "%"
+        },
+        {
+            "nome": "temperatura",
+            "valor": "23.5",
+            "hora": "2025/04/10 18:38",
+            "escala": "ºC"
+        },
+        {
+            "nome": "arCondicionado",
+            "valor": "Ligado",
+            "hora": "2025/04/10 18:38"
+        },
+        {
+            "nome": "temperatura",
+            "valor": "27.6",
+            "hora": "2025/04/10 18:39",
+            "escala": "ºC"
+        },
+        {
+            "nome": "luminosidade",
+            "valor": "40",
+            "hora": "2025/04/10 18:39",
+            "escala": "%"
+        },
+        {
+            "nome": "led",
+            "valor": "Ligado",
+            "hora": "2025/04/10 18:39"
+        },
+        {
+            "nome": "humidade",
+            "valor": "40",
+            "hora": "2025/04/10 18:40",
+            "escala": "%"
+        },
+        {
+            "nome": "temperatura",
+            "valor": "9",
+            "hora": "2025/04/10 18:41",
+            "escala": "ºC"
+        },
+        {
+            "nome": "arCondicionado",
+            "valor": "Desligado",
+            "hora": "2025/04/10 18:41"
+        },
+        {
+            "nome": "luminosidade",
+            "valor": "10",
+            "hora": "2025/04/10 18:42",
+            "escala": "%"
+        },
+        {
+            "nome": "luminosidade",
+            "valor": "80",
+            "hora": "2025/04/10 18:42",
+            "escala": "%"
+        },
+        {
+            "nome": "led",
+            "valor": "Desligado",
+            "hora": "2025/04/10 18:42"
+        }
+    ]
+}

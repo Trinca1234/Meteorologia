@@ -27,8 +27,14 @@
     //vai ver o Host do servidor  
     $host = $_SERVER['HTTP_HOST'];
 
-    //com as duas informações contrui um url para conseguir o pedido de dados
-    $url = $protocolo . "://" . $host . "/ti/ti113/dados/api/api.php?";
+    if ($host === "localhost") {
+        //se for local host
+        $url = $protocolo . "://" . $host . "/Meteorologia/dados/api/api.php?";
+
+    } else {
+        //com as duas informações contrui um url para conseguir o pedido de dados
+        $url = $protocolo . "://" . $host . "/ti/ti113/dados/api/api.php?";
+    }
 
     ?>
     <header class="bg-white border-bottom sticky-header">
@@ -90,7 +96,7 @@
                             <p class="fs-5 mb-4">Descrição</p>
                             <!-- cartoes com as informaçoes dos sensores -->
                             <div class="row g-3">
-                                <div class="col-6 col-sm-4">
+                                <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
                                             <?php
@@ -109,7 +115,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
                                             <?php
@@ -128,7 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
                                             <?php
@@ -165,7 +171,7 @@
                         <!-- cartao com as informaçoes dos atuadores -->
                         <div class="card-body wijetbody">
                             <div class="row g-3">
-                                <div class="col-6 col-sm-4">
+                                <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
                                             <?php
@@ -184,28 +190,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
-                                        <div class="card-header sensor header text-center">
-                                            <?php
-                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=led&info=nome")) .
-                                                '</strong>' . ' 
-                                                <p class="text-muted small mb-0">' . ucfirst(file_get_contents($url . "variavel=led&info=valor")) . '
-                                                </p>                                          
-                                                </div>
-                                                <div class="card-body text-center">
-                                                <img style="max-height: 160px;" src="../dados/imagens/led.png" alt="Led" />
-                                                </div>
-                                                <div class="card-footer footer text-center">
-                                                <strong>Atualização:</strong>';
-                                            echo ucfirst(file_get_contents($url . "variavel=led&info=hora"));
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-4">
-                                    <div class="card border border-dark ">
-                                        <div class="card-header sensor header text-center">
+                                    <div class="card-header sensor header text-center">
                                             <?php
                                             echo'<strong>' . ucfirst(file_get_contents($url . "variavel=regador&info=nome")) .
                                                 '</strong>' . ' 
@@ -218,6 +205,25 @@
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
                                             echo ucfirst(file_get_contents($url . "variavel=regador&info=hora"));
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="card border border-dark ">
+                                    <div class="card-header sensor header text-center">
+                                            <?php
+                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=led&info=nome")) .
+                                                '</strong>' . ' 
+                                                <p class="text-muted small mb-0">' . ucfirst(file_get_contents($url . "variavel=led&info=valor")) . '
+                                                </p>                                          
+                                                </div>
+                                                <div class="card-body text-center">
+                                                <img style="max-height: 160px;" src="../dados/imagens/led.png" alt="Led" />
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=led&info=hora"));
                                             ?>
                                         </div>
                                     </div>
