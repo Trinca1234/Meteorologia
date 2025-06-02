@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['valor'], $_POST['nome'], $_POST['escala'])) {
+    if (isset($_POST['valor'], $_POST['nome'])) {
 
         //indicar caminho
         $files = "files/" . $_POST['nome'];
@@ -13,25 +13,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //defenir o horario de lisboa
             date_default_timezone_set('Europe/Lisbon');
 
-
-            //escrever em cada um dos ficheiros respetivos o seu valor
             file_put_contents($files . "/valor.txt", $_POST['valor']);
             file_put_contents($files . "/nome.txt", $_POST['nome']);
-            file_put_contents($files . "/escala.txt", $_POST['escala']);
             file_put_contents($files . "/hora.txt", date('Y/m/d H:i'));
-
-            //faz o log com todos os valores acabados de receber
-            $log = [
-                "nome" => $_POST['nome'],
-                "valor" => $_POST['valor'],
-                "hora" => date('Y/m/d H:i'),
-                "escala" => $_POST['escala']
-            ];
-            EscreverLog($log,$fichieroLogs);
-
-
-            
+            //se for um post de sensor
+            if(isset($_POST['escala'])){
+                //escrever em cada um dos ficheiros respetivos o seu valor
+                file_put_contents($files . "/escala.txt", $_POST['escala']);
+    
+                //faz o log com todos os valores acabados de receber
+                $log = [
+                    "nome" => $_POST['nome'],
+                    "valor" => $_POST['valor'],
+                    "hora" => date('Y/m/d H:i'),
+                    "escala" => $_POST['escala']
+                ];
+                EscreverLog($log,$fichieroLogs);
+            }
+            //se for um post de atuador
+            elseif(isset( $_POST['estado'])){
+                file_put_contents($files . "/escala.txt", $_POST['escala']);
+                $log = [
+                    "nome" => $_POST['nome'],
+                    "valor" => $_POST['valor'],
+                    "hora" => date('Y/m/d H:i'),
+                    "estado" => $_POST['estado']
+                ];
+                EscreverLog($log,$fichieroLogs);
+            }
             //vai verificar as condições dos atuadores , escrevendo e adicionando logs de cada um
+            /*
             if ($_POST['nome'] === 'temperatura') {
 
                 $AtuadorValor = floatval($_POST['valor']) > 20 ? 'Ligado' : 'Desligado';
@@ -85,9 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 file_put_contents("files/led/" . "valor.txt", $AtuadorValor);
                 file_put_contents("files/led/" . "hora.txt", date('Y/m/d H:i'));
             }
-
-
- }
+            */
+        }
     } else {
         http_response_code(400);
     }
