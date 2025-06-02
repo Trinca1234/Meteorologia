@@ -233,6 +233,41 @@
                     </div>
                 </div>
             </div>
+           <!-- Imagem -->
+            <div class="row g-4 mt-4">
+                <div class="col-12">
+                    <div class="card border border-dark">
+                        <div class="card-header widjet">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="h5 mb-0">Clima Imagem</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body wijetbody">
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-4">
+                                    <div class="card border border-dark ">
+                                        <div class="card-header sensor header text-center">
+                                        <?php
+                                            echo '<strong> Webcam </strong>
+                                                </div>
+                                                <div class="card-body text-center">
+                                                <img src="../dados/imagens/webcam.jpg?id=".time()." style="width:100%">
+                                                </div>
+                                                <div class="card-footer footer text-center">
+                                                <strong>Atualização:</strong>';
+                                            echo ucfirst(file_get_contents($url . "variavel=led&info=hora"));
+                                        ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
     <footer class=" bg-white border-top py-1 mt-4">
