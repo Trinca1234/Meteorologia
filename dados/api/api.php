@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //defenir o horario de lisboa
             date_default_timezone_set('Europe/Lisbon');
 
+            //escrever em cada um dos ficheiros respetivos o seu valor
             file_put_contents($files . "/valor.txt", $_POST['valor']);
             file_put_contents($files . "/nome.txt", $_POST['nome']);
             file_put_contents($files . "/hora.txt", date('Y/m/d H:i'));
             //se for um post de sensor
             if(isset($_POST['escala'])){
-                //escrever em cada um dos ficheiros respetivos o seu valor
                 file_put_contents($files . "/escala.txt", $_POST['escala']);
     
                 //faz o log com todos os valores acabados de receber
@@ -31,13 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 EscreverLog($log,$fichieroLogs);
             }
             //se for um post de atuador
-            elseif(isset( $_POST['estado'])){
-                file_put_contents($files . "/escala.txt", $_POST['escala']);
+            else{
                 $log = [
                     "nome" => $_POST['nome'],
                     "valor" => $_POST['valor'],
-                    "hora" => date('Y/m/d H:i'),
-                    "estado" => $_POST['estado']
+                    "hora" => date('Y/m/d H:i')
                 ];
                 EscreverLog($log,$fichieroLogs);
             }
