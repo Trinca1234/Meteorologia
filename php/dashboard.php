@@ -8,6 +8,80 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/x-icon" href="../dados/imagens/icon.png">
+    <script>
+        // Define the base API URL depending on the host
+        const protocolo = location.protocol;
+        const host = location.hostname;
+        const apiUrl = (host === "localhost") ?
+            `${protocolo}//${host}/Meteorologia/dados/api/api.php?` :
+            `${protocolo}//${host}/ti/ti113/dados/api/api.php?`;
+
+        // Map of variables to update
+        const sensores = ["temperatura", "humidade", "luminosidade"];
+        const atuadores = ["arCondicionado", "regador", "led"];
+
+        function updateDados() {
+            sensores.forEach(variavel => {
+                updateSensor(variavel);
+            });
+            atuadores.forEach(variavel => {
+                updateAtuador(variavel);
+            });
+            updateWebcam();
+        }
+
+        function updateSensor(variavel) {
+            Promise.all([
+                fetch(apiUrl + `variavel=${variavel}&info=valor`).then(r => r.text()),
+                fetch(apiUrl + `variavel=${variavel}&info=nome`).then(r => r.text()),
+                fetch(apiUrl + `variavel=${variavel}&info=escala`).then(r => r.text()),
+                fetch(apiUrl + `variavel=${variavel}&info=hora`).then(r => r.text())
+            ]).then(([valor, nome, escala, hora]) => {
+                const valorNum = parseFloat(valor);
+                const imageElement = document.querySelector(`#img-${variavel}`);
+                const textElement = document.querySelector(`#info-${variavel}`);
+                const horaElement = document.querySelector(`#hora-${variavel}`);
+
+                let imgSrc;
+                if (variavel === "temperatura") {
+                    imgSrc = valorNum < 20 ? "../dados/imagens/temperaturaBaixa.png" : "../dados/imagens/temperaturaAlta.png";
+                } else if (variavel === "humidade") {
+                    imgSrc = valorNum < 50 ? "../dados/imagens/humidadeBaixa.png" : "../dados/imagens/humidadeAlta.png";
+                } else if (variavel === "luminosidade") {
+                    imgSrc = valorNum < 50 ? "../dados/imagens/luminosidadeBaixa.png" : "../dados/imagens/luminosidadeAlta.png";
+                }
+
+                imageElement.src = imgSrc;
+                textElement.innerHTML = `<strong>${nome.charAt(0).toUpperCase() + nome.slice(1)}: ${valor}${escala}</strong>`;
+                horaElement.textContent = hora;
+            });
+        }
+
+        function updateAtuador(variavel) {
+            Promise.all([
+                fetch(apiUrl + `variavel=${variavel}&info=nome`).then(r => r.text()),
+                fetch(apiUrl + `variavel=${variavel}&info=valor`).then(r => r.text()),
+                fetch(apiUrl + `variavel=${variavel}&info=hora`).then(r => r.text())
+            ]).then(([nome, valor, hora]) => {
+                const textElement = document.querySelector(`#info-${variavel}`);
+                const horaElement = document.querySelector(`#hora-${variavel}`);
+                textElement.innerHTML = `<strong>${nome.charAt(0).toUpperCase() + nome.slice(1)}</strong>
+                <p class="text-muted small mb-0">${valor.charAt(0).toUpperCase() + valor.slice(1)}</p>`;
+                horaElement.textContent = hora;
+            });
+        }
+
+        function updateWebcam() {
+            const webcamImage = document.querySelector("#webcam-img");
+            const horaElement = document.querySelector("#hora-led"); // assuming LED shares the update time
+            webcamImage.src = `../dados/imagens/webcam.jpg?id=${new Date().getTime()}`;
+        }
+
+        // Refresh data every 30 seconds
+        setInterval(updateDados, 5000);
+        // Initial load
+        updateDados();
+    </script>
 
 </head>
 
@@ -98,7 +172,7 @@
                             <div class="row g-3">
                                 <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
-                                        <div class="card-header sensor header text-center">
+                                        <div class="card-header sensor header text-center" id="info-temperatura">
                                             <?php
                                             $imagem  = file_get_contents($url . "variavel=temperatura&info=valor") < 20 ? '../dados/imagens/temperaturaBaixa.png' : '../dados/imagens/temperaturaAlta.png';
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=temperatura&info=nome")) . ": "
@@ -106,18 +180,18 @@
                                                 file_get_contents($url . "variavel=temperatura&info=escala") .
                                                 '</strong>' . ' </div>
                                                 <div class="card-body text-center">
-                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Temperatura" />
+                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Temperatura" id="img-temperatura" />
                                                 </div>
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
-                                            echo ucfirst(file_get_contents($url . "variavel=temperatura&info=hora"));
+                                            echo '<span id="hora-temperatura">ucfirst(file_get_contents($url . "variavel=temperatura&info=hora"))<span/>';
                                             ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
-                                        <div class="card-header sensor header text-center">
+                                        <div class="card-header sensor header text-center" id="info-humidade">
                                             <?php
                                             $imagem  = file_get_contents($url . "variavel=humidade&info=valor") < 50 ? '../dados/imagens/humidadeBaixa.png' : '../dados/imagens/humidadeAlta.png';
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=humidade&info=nome")) . ": "
@@ -125,18 +199,18 @@
                                                 file_get_contents($url . "variavel=humidade&info=escala") .
                                                 '</strong>' . ' </div>
                                                 <div class="card-body text-center">
-                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Humidade" />
+                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Humidade" id="img-humidade" />
                                                 </div>
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
-                                            echo ucfirst(file_get_contents($url . "variavel=humidade&info=hora"));
+                                            echo '<span id="hora-humidade">ucfirst(file_get_contents($url . "variavel=humidade&info=hora"))<span/>';
                                             ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="card border border-dark ">
-                                        <div class="card-header sensor header text-center">
+                                        <div class="card-header sensor header text-center" id="info-luminosidade">
                                             <?php
                                             $imagem  = file_get_contents($url . "variavel=luminosidade&info=valor") < 50 ? '../dados/imagens/luminosidadeBaixa.png' : '../dados/imagens/luminosidadeAlta.png';
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=luminosidade&info=nome")) . ": "
@@ -144,11 +218,11 @@
                                                 file_get_contents($url . "variavel=luminosidade&info=escala") .
                                                 '</strong>' . ' </div>
                                                 <div class="card-body text-center">
-                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Luminosidade" />
+                                                <img style="max-height: 160px;" src="' . $imagem . '" alt="Luminosidade" id="img-luminosidade" />
                                                 </div>
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
-                                            echo ucfirst(file_get_contents($url . "variavel=luminosidade&info=hora"));
+                                            echo '<span id="hora-luminosidade">ucfirst(file_get_contents($url . "variavel=luminosidade&info=hora"))<span/>';
                                             ?>
                                         </div>
                                     </div>
