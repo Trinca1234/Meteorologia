@@ -249,7 +249,19 @@
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
                                             <?php
-                                            echo '<strong>' . ucfirst(file_get_contents($url . "variavel=arCondicionado&info=nome")) .
+                                                $estado = strtolower(trim(file_get_contents($url . "C:\Users\jojin\Documents\TempoCerto\Meteorologia\dados\api\files\arCondicionado\valor.txt")));
+                                                $isChecked = ($estado === "Ligado") ? 'checked' : 'desligado';
+                                                echo "<p>$isChecked<p/>";
+                                            ?>
+                                            <form class="d-flex justify-content-start" action="../api/api.php" method="GET">
+                                                <label class="switch">
+                                                    <input type="checkbox" name="ar_condicionado" value="on" <?php echo $isChecked; ?>>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </form>
+                                            <?php
+                                            echo '    
+                                                <strong>' . ucfirst(file_get_contents($url . "variavel=arCondicionado&info=nome")) .
                                                 '</strong>' . ' 
                                                 <p class="text-muted small mb-0">' . ucfirst(file_get_contents($url . "variavel=arCondicionado&info=valor")) . '
                                                 </p>

@@ -39,62 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 ];
                 EscreverLog($log,$fichieroLogs);
             }
-            //vai verificar as condições dos atuadores , escrevendo e adicionando logs de cada um
-            /*
-            if ($_POST['nome'] === 'temperatura') {
-
-                $AtuadorValor = floatval($_POST['valor']) > 20 ? 'Ligado' : 'Desligado';
-
-                if (!(file_get_contents("files/arCondicionado/valor.txt") === $AtuadorValor)) {
-                    $log = [
-                        "nome" => 'arCondicionado',
-                        "valor" => $AtuadorValor,
-                        "hora" => date('Y/m/d H:i'),
-                    ];
-                    EscreverLog($log,$fichieroLogs);
-                }
-
-                file_put_contents("files/arCondicionado/nome.txt", 'arCondicionado');
-                file_put_contents("files/arCondicionado/valor.txt", $AtuadorValor);
-                file_put_contents("files/arCondicionado/hora.txt", date('Y/m/d H:i'));
-            }
-
-            if ($_POST['nome'] === 'temperatura' || $_POST['nome'] === 'humidade') {
-                $AtuadorValor = floatval(file_get_contents('files/humidade/valor.txt')) <= 50 | file_get_contents('files/temperatura/valor.txt') > 20 ? 'Ligado' : 'Desligado';
-
-                if (!(file_get_contents("files/regador/valor.txt") === $AtuadorValor)) {
-                    $log = [
-                        "nome" => 'regador',
-                        "valor" => $AtuadorValor,
-                        "hora" => date('Y/m/d H:i'),
-                    ];
-                    EscreverLog($log,$fichieroLogs);
-                }
-
-                file_put_contents("files/regador/" . "nome.txt", 'regador');
-                file_put_contents("files/regador/" . "valor.txt", $AtuadorValor);
-                file_put_contents("files/regador/" . "hora.txt", date('Y/m/d H:i'));
-            }
-
-
-            if ($_POST['nome'] === 'luminosidade') {
-                $AtuadorValor = $_POST['valor'] < 50 ? 'Ligado' : 'Desligado';
-
-                if (!(file_get_contents("files/led/valor.txt") === $AtuadorValor)) {
-                    $log = [
-                        "nome" => 'led',
-                        "valor" => $AtuadorValor,
-                        "hora" => date('Y/m/d H:i'),
-                    ];
-                    EscreverLog($log,$fichieroLogs);
-                }
-
-
-                file_put_contents("files/led/" . "nome.txt", 'led');
-                file_put_contents("files/led/" . "valor.txt", $AtuadorValor);
-                file_put_contents("files/led/" . "hora.txt", date('Y/m/d H:i'));
-            }
-            */
         }
     } else {
         http_response_code(400);
