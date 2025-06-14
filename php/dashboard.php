@@ -1,4 +1,31 @@
 <!DOCTYPE html>
+<?php
+    session_start();
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    if (!isset($_SESSION['username'])) {
+        $_SESSION['erro'] = "É necessário login para entrar.";
+        header('Location: index.php');
+        exit();
+    }
+
+    //verificar qual o protocolo (https ou http)
+    $protocolo = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+
+    //vai ver o Host do servidor  
+    $host = $_SERVER['HTTP_HOST'];
+
+    if ($host === "localhost") {
+        //se for local host
+        $url = $protocolo . "://" . $host . "/Meteorologia/dados/api/api.php?";
+
+    } else {
+        //com as duas informações contrui um url para conseguir o pedido de dados
+        $url = $protocolo . "://" . $host . "/ti/ti113/dados/api/api.php?";
+    }
+
+    ?>
 <html lang="en">
 
 <head>
@@ -8,7 +35,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/x-icon" href="../dados/imagens/icon.png">
-    <script>
+    <!-- <script>
         // Define the base API URL depending on the host
         const protocolo = location.protocol;
         const host = location.hostname;
@@ -81,36 +108,11 @@
         setInterval(updateDados, 5000);
         // Initial load
         updateDados();
-    </script>
+    </script> -->
 
 </head>
 
 <body>
-    <?php
-    session_start();
-
-    if (!isset($_SESSION['username'])) {
-        $_SESSION['erro'] = "É necessário login para entrar.";
-        header('Location: index.php');
-        exit();
-    }
-
-    //verificar qual o protocolo (https ou http)
-    $protocolo = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-
-    //vai ver o Host do servidor  
-    $host = $_SERVER['HTTP_HOST'];
-
-    if ($host === "localhost") {
-        //se for local host
-        $url = $protocolo . "://" . $host . "/Meteorologia/dados/api/api.php?";
-
-    } else {
-        //com as duas informações contrui um url para conseguir o pedido de dados
-        $url = $protocolo . "://" . $host . "/ti/ti113/dados/api/api.php?";
-    }
-
-    ?>
     <header class="bg-white border-bottom sticky-header">
         <div class="container py-3">
             <div class="row align-items-center">
@@ -184,7 +186,7 @@
                                                 </div>
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
-                                            echo '<span id="hora-temperatura">ucfirst(file_get_contents($url . "variavel=temperatura&info=hora"))<span/>';
+                                            echo '<span id="hora-temperatura">'.ucfirst(file_get_contents($url . "variavel=temperatura&info=hora")).'<span/>';
                                             ?>
                                         </div>
                                     </div>
@@ -203,7 +205,7 @@
                                                 </div>
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
-                                            echo '<span id="hora-humidade">ucfirst(file_get_contents($url . "variavel=humidade&info=hora"))<span/>';
+                                            echo '<span id="hora-humidade">'.ucfirst(file_get_contents($url . "variavel=humidade&info=hora")).'<span/>';
                                             ?>
                                         </div>
                                     </div>
@@ -222,7 +224,7 @@
                                                 </div>
                                                 <div class="card-footer footer text-center">
                                                 <strong>Atualização:</strong>';
-                                            echo '<span id="hora-luminosidade">ucfirst(file_get_contents($url . "variavel=luminosidade&info=hora"))<span/>';
+                                            echo '<span id="hora-luminosidade">'.ucfirst(file_get_contents($url . "variavel=luminosidade&info=hora")).'<span/>';
                                             ?>
                                         </div>
                                     </div>
@@ -249,7 +251,7 @@
                                     <div class="card border border-dark ">
                                         <div class="card-header sensor header text-center">
                                             <?php
-                                                $estado = strtolower(trim(file_get_contents($url . "C:\Users\jojin\Documents\TempoCerto\Meteorologia\dados\api\files\arCondicionado\valor.txt")));
+                                                $estado = strtolower(trim(file_get_contents($url . "../dados/api/files/arCondicionado/valor.txt")));
                                                 $isChecked = ($estado === "Ligado") ? 'checked' : 'desligado';
                                                 echo "<p>$isChecked<p/>";
                                             ?>

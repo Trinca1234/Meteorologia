@@ -1,16 +1,3 @@
-
-Conversa aberta. 1 mensagem não lida.
-
-Saltar para o conteúdo
-A utilizar Gmail com leitores de ecrã
-1 de 9 107
-(sem assunto)
-Caixa de entrada
-Ricardo Duarte <ricapduarte@gmail.com>
-	
-14:57 (há 2 minutos)
-	
-para mim
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,65 +46,64 @@ para mim
               <h2 class="h5 mb-0">Galeria</h2>
             </div>
             <div class="card-body">
-            <!--    -->   
-            <div class="card-body wijetbody">
-  <div class="card-body wijetbody">
-  <div class="row g-3">
-    <?php
-    $dir = '../dados/fotos/';
-    $todosFicheiros = scandir($dir); // Lista tudo na pasta
-    $imagens = [];
+              <div class="card-body wijetbody">
+                <div class="card-body wijetbody">
+                  <div class="row g-3">
+                    <?php
+                    $pasta = '../dados/fotos/';
+                    $ficheiros = scandir($pasta); // Lista tudo na pasta
+                    $imagens = [];
 
-    // Filtra apenas os ficheiros .png válidos
-    foreach ($todosFicheiros as $ficheiro) {
-        if (is_file($dir . $ficheiro) && pathinfo($ficheiro, PATHINFO_EXTENSION) === 'png') {
-            $imagens[] = $ficheiro;
-        }
-    }
+                    // Filtra apenas os ficheiros .png válidos
+                    foreach ($ficheiros as $file) {
+                      if (is_file($pasta . $file) && pathinfo($file, PATHINFO_EXTENSION) === 'png') {
+                        $imagens[] = $file;
+                      }
+                    }
 
-    // Ordena por nome (do mais recente para o mais antigo)
-    rsort($imagens);
+                    //Ordenar por ordem de mais recente para mais antigo
+                    rsort($imagens);
 
-    // Limita a 30 imagens
-    $imagens = array_slice($imagens, 0, 30);
+                    //limitar apenas para 30 imagens
+                    $imagens = array_slice($imagens, 0, 30);
 
-    $fotoNum = 1;
-    foreach ($imagens as $imgName) {
-        $imgPath = $dir . $imgName;
-        $semExtensao = pathinfo($imgName, PATHINFO_FILENAME);
+                    $cont = 1;
+                    foreach ($imagens as $nomeImg) {
+                      $caminhoImg = $pasta . $nomeImg;
+                      $nomeSemExtensao = pathinfo($caminhoImg, PATHINFO_FILENAME);
+                      list($ano, $hora) = explode("_", $nomeSemExtensao);
+                      $novoAno = str_replace("-", "/", $ano);
+                      $novaHora = str_replace("-", ":", $hora);
 
-        // Formatar para 2025/06/14 13:59:09
-        $dataFormatada = str_replace(['_', '-'], [' ', '/'], $semExtensao);
+                      echo '
+                          <div class="col-12 col-sm-4">
+                            <div class="card border border-dark">
+                              <div class="card-header sensor header text-center">
+                                <strong>Foto ' . $cont . '</strong>
+                              </div>
+                              <div class="card-body text-center">
+                                <img src="' . $caminhoImg . '?id=' . time() . '" style="width:100%">
+                              </div>
+                              <div class="card-footer footer text-center">
+                                <strong>Atualização:</strong> ' . $novoAno ." ". $novaHora .'
+                              </div>
+                            </div>
+                          </div>';
 
-        echo '
-        <div class="col-12 col-sm-4">
-          <div class="card border border-dark">
-            <div class="card-header sensor header text-center">
-              <strong>Foto ' . $fotoNum . '</strong>
-            </div>
-            <div class="card-body text-center">
-              <img src="' . $imgPath . '?id=' . time() . '" style="width:100%">
-            </div>
-            <div class="card-footer footer text-center">
-              <strong>Atualização:</strong> ' . $dataFormatada . '
-            </div>
-          </div>
-        </div>';
-
-        $fotoNum++;
-    }
-    ?>
-  </div>
-</div>
-
+                      $cont++;
+                    }
+                    ?>
+                  </div>
+                </div>
 
 
 
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </main>
 
   <footer class="bg-white border-top py-1 mt-4">
@@ -141,5 +127,3 @@ para mim
 </body>
 
 </html>
-
-	
