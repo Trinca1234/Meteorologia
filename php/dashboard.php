@@ -112,6 +112,7 @@
                         <span class="text-muted p-4 h5">
                             <?php
                             //verifica se a variavel admin existe para poder disponibilizar o historico
+                            //verifica se a variavel admin existe para poder disponibilizar o historico
                             if (isset($_SESSION['admin'])) {
                                 echo ' <a href="historico.php">Historico</a></span><span class="text-muted p-1 h5"> <a href="galeria.php">Galeria</a> </span>';
                             }
@@ -142,6 +143,8 @@
                                         <?php
 
                                         //array associativo para poder passar os nomes em ingles devolvidos da função para portugues
+
+                                        //array associativo para poder passar os nomes em ingles devolvidos da função para portugues
                                         $diaDaSemana = [
                                             'Monday' => 'Segunda-feira',
                                             'Tuesday' => 'Terça-feira',
@@ -162,6 +165,7 @@
                         <div class="card-body wijetbody">
                             <p class="fs-5 mb-4">Descrição</p>
                             <!-- cartoes com as informaçoes dos sensores -->
+                            <!-- cartoes com as informaçoes dos sensores -->
                             <div class="row g-3">
                                 <div class="col-12 col-sm-4">
                                     <div class="card border border-dark efeitoAumentar">
@@ -171,6 +175,7 @@
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=temperatura&info=nome")) . ": "
                                                 . file_get_contents($url . "variavel=temperatura&info=valor") .
                                                 file_get_contents($url . "variavel=temperatura&info=escala") .
+                                                '</strong>' . ' </div>
                                                 '</strong>' . ' </div>
                                                 <div class="card-body text-center">
                                                 <img style="max-height: 160px;" src="' . $imagem . '" alt="Temperatura" id="img-temperatura" />
@@ -191,6 +196,7 @@
                                                 . file_get_contents($url . "variavel=humidade&info=valor") .
                                                 file_get_contents($url . "variavel=humidade&info=escala") .
                                                 '</strong>' . ' </div>
+                                                '</strong>' . ' </div>
                                                 <div class="card-body text-center">
                                                 <img style="max-height: 160px;" src="' . $imagem . '" alt="Humidade" id="img-humidade" />
                                                 </div>
@@ -209,6 +215,7 @@
                                             echo '<strong>' . ucfirst(file_get_contents($url . "variavel=luminosidade&info=nome")) . ": "
                                                 . file_get_contents($url . "variavel=luminosidade&info=valor") .
                                                 file_get_contents($url . "variavel=luminosidade&info=escala") .
+                                                '</strong>' . ' </div>
                                                 '</strong>' . ' </div>
                                                 <div class="card-body text-center">
                                                 <img style="max-height: 160px;" src="' . $imagem . '" alt="Luminosidade" id="img-luminosidade" />
@@ -235,6 +242,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- cartao com as informaçoes dos atuadores -->
                         <!-- cartao com as informaçoes dos atuadores -->
                         <div class="card-body wijetbody">
                             <div class="row g-3">

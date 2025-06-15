@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         if (file_exists($files) && file_exists($fichieroLogs)) {
             //defenir o horario de lisboa
+            //defenir o horario de lisboa
             date_default_timezone_set('Europe/Lisbon');
 
             //escrever em cada um dos ficheiros respetivos o seu valor
@@ -91,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
                 file_put_contents("files/led/" . "nome.txt", 'led');
+                file_put_contents("files/led/" . "nome.txt", 'led');
                 file_put_contents("files/led/" . "valor.txt", $AtuadorValor);
                 file_put_contents("files/led/" . "hora.txt", date('Y/m/d H:i'));
             }
@@ -118,6 +120,7 @@ function EscreverLog($log,$fichieroLogs){
                 $logsArray['logs'] = [];
             }
 
+            //dentro do array logs, vai ser adicionado o log acabado de criar
             //dentro do array logs, vai ser adicionado o log acabado de criar
             $logsArray['logs'][] = $log;
 

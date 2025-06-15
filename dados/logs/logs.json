@@ -52,36 +52,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "23.5",
-            "hora": "2025/04/10 18:38",
-            "escala": "ºC"
-        },
-        {
-            "nome": "arCondicionado",
-            "valor": "Ligado",
-            "hora": "2025/04/10 18:38"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "27.6",
-            "hora": "2025/04/10 18:39",
-            "escala": "ºC"
-        },
-        {
-            "nome": "luminosidade",
-            "valor": "40",
-            "hora": "2025/04/10 18:39",
-            "escala": "%"
-        },
-        {
-            "nome": "led",
-            "valor": "Ligado",
-            "hora": "2025/04/10 18:39"
-        },
-        {
-            "nome": "humidade",
-            "valor": "40",
-            "hora": "2025/04/10 18:40",
+            "valor": "65",
+            "hora": "banana",
             "escala": "%"
         },
         {
@@ -7732,140 +7704,14 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:30",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:30",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
-            "valor": "71",
-            "hora": "2025/06/14 11:30",
-            "escala": "%"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:30",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:30",
-            "escala": "%"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
-            "valor": "70",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
-            "valor": "69",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
-            "valor": "63",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
-            "valor": "61",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
             "valor": "65",
-            "hora": "2025/06/14 11:31",
+            "hora": "banana",
             "escala": "%"
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "ºC"
-        },
-        {
-            "nome": "humidade",
-            "valor": "47.0",
-            "hora": "2025/06/14 11:31",
-            "escala": "%"
-        },
-        {
-            "nome": "luminosidade",
             "valor": "65",
-            "hora": "2025/06/14 11:31",
+            "hora": "banana",
             "escala": "%"
         },
         {
@@ -7918,8 +7764,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "16:34:48 07-04",
             "escala": "ºC"
         },
         {
@@ -7930,8 +7776,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "04/07/04 16:36:25",
             "escala": "ºC"
         },
         {
@@ -7948,8 +7794,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "04 / 07 / 04 16:36:42",
             "escala": "ºC"
         },
         {
@@ -7960,8 +7806,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "04dm 16:36:57",
             "escala": "ºC"
         },
         {
@@ -7978,8 +7824,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "2025/04/07 16:39",
             "escala": "ºC"
         },
         {
@@ -7996,8 +7842,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "2025/04/07 16:40",
             "escala": "ºC"
         },
         {
@@ -8008,8 +7854,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "24",
+            "hora": "2025/04/07 16:41",
             "escala": "ºC"
         },
         {
@@ -8026,8 +7872,8 @@
         },
         {
             "nome": "temperatura",
-            "valor": "28.0",
-            "hora": "2025/06/14 11:32",
+            "valor": "30",
+            "hora": "2025/04/07 16:42",
             "escala": "ºC"
         },
         {
@@ -10991,7 +10837,7 @@
         {
             "nome": "arCondicionado",
             "valor": "Ligado",
-            "hora": "2025/06/14 15:07"
-        }
+            "hora": "2025/04/07 16:42"
+        }   
     ]
 }
