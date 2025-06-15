@@ -3,6 +3,11 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //verificação do metedo
     if (isset($_POST['username']) && isset($_POST['password'])) {
+
+        //tirar espaços em branco
+        $_POST['username'] = trim($_POST['username']);
+        $_POST['password'] = trim($_POST['password']);
+
         //Dupla verificação da pass e do username
 
         //caminho para o ficheiro
@@ -42,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             //variavel com o texto que vai aparecer na pagina de login
             $_SESSION['erro'] = "Username ou Password inválidos";
-            header("Location: ../php/index.php");
+            header("Location: ../index.php");
         } else {
             ErrorHandling("Erro 404: Ficheiro não encontrado.", 404);
         }
@@ -55,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function ErrorHandling($msg, $erro): never
 {
     //função que vai tratar de cada tipo de erros
-    $index = "../php/index.php";
+    $index = "../index.php";
 
     http_response_code($erro);
     header("Refresh:3; url=" . $index);
